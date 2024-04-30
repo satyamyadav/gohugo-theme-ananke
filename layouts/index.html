@@ -1,7 +1,10 @@
 {{ define "main" }}
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
-      {{ .Content }}
-    </article>
+  {{ with .Content }}
+  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy {{ $.Param " text_color" | default "mid-gray"
+    }}">
+    {{ . }}
+  </article>
+  {{ end }}
     {{/* Define a section to pull recent posts from. For Hugo 0.20 this will default to the section with the most number of pages. */}}
     {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
     
@@ -16,7 +19,7 @@
       <div class="pa3 pa4-ns w-100 w-70-ns center">
         {{/* Use $section_name to get the section title. Use "with" to only show it if it exists */}}
         {{ with $.Site.GetPage "section" $section_name }}
-            <h1 class="flex-none">
+            <h1 class="flex-none fw4">
               {{ $.Param "recent_copy" | default (i18n "recentTitle" .) }}
             </h1>
           {{ end }}
